@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate  
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    template="template.xhtml">
+
+
+    <h:form>
+        <p:toolbar>
+            <p:toolbarGroup>          
+                <p:commandButton value="Adicionar" action="#{clienteBean.adicionar()}" update="@form"></p:commandButton>
+                <p:commandButton value="Buscar" action="#{clienteBean.buscar()}" update="@form"></p:commandButton>
+            </p:toolbarGroup>
+        </p:toolbar>
+        <p:fieldset legend="Clientes">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Nome"> </p:outputLabel>
+                <p:inputText value="#{clienteBean.cliente.nome}"></p:inputText>                
+                <p:outputLabel value="Email"> </p:outputLabel>  
+                <p:inputText value="#{clienteBean.cliente.email}"></p:inputText>
+            </p:panelGrid> 
+            <p:dataTable value="#{clienteBean.clientes}" var="cliente">
+                <p:column headerText="ID" sortBy="#{cliente.id}">
+                    <h:outputText value="#{cliente.id}"></h:outputText>                      
+                </p:column>
+                <p:column headerText="Nome" sortBy="#{cliente.nome}">
+                    <h:outputText value="#{cliente.nome}"></h:outputText>                      
+                </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{cliente.email}"></h:outputText>                      
+                </p:column>
+                <p:column headerText="Ações">
+                    <h:commandButton value="Excluir" action="#{clienteBean.deletar()}"></h:commandButton>
+                    <h:commandButton value="Editar" action="#{clienteBean.alterar()}"></h:commandButton>
+                    
+                </p:column>
+
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+
+</ui:decorate>
+
